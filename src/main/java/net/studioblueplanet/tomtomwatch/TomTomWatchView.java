@@ -55,11 +55,6 @@ import net.studioblueplanet.usb.WatchInterface;
 public class TomTomWatchView extends javax.swing.JFrame implements Observer
 {
 	private static final int MAXNAME = 15;
-	private static final int PRODID_ADVENTURER = 0xe0070000;
-	private static final int PRODID_RUNNER3MUSIC = 0xd1070000;
-	private static final int PRODID_RUNNER3NOMUSIC = 0xde070000;
-	private static final int PRODID_MULTISPORTS = 0xec030000;
-	private static final int PRODID_SPARK3MUSIC = 0xdf070000;
 
 	private final CommunicationProcess communicationProcess;
 
@@ -979,7 +974,7 @@ public class TomTomWatchView extends javax.swing.JFrame implements Observer
 			});
 		jMenuDevice.add(jMenuItemListRaces);
 
-		jMenuItemSyncTime.setText("Synchronize Time Offset");
+		jMenuItemSyncTime.setText("Synchronize Time");
 		jMenuItemSyncTime.addActionListener(new java.awt.event.ActionListener()
 			{
 				@Override
@@ -1280,8 +1275,8 @@ public class TomTomWatchView extends javax.swing.JFrame implements Observer
 
 		GpxWriter writer;
 
-		GitBuildInfo build = GitBuildInfo.getInstance();
-		String appName = "TomTomWatch " + build.getGitCommitDescription() + " (" + build.getBuildTime() + ")";
+		// GitBuildInfo build = GitBuildInfo.getInstance();
+		String appName = "TomTomWatch ";// + build.getGitCommitDescription() + " (" + build.getBuildTime() + ")";
 
 		ActivityData data = communicationProcess.getActivityData(index);
 		String path = settings.getStringValue("gpxFilePath");
@@ -2507,11 +2502,8 @@ public class TomTomWatchView extends javax.swing.JFrame implements Observer
 	public void setProductId(int id)
 	{
 		jTextFieldProductId.setText(String.format("0x%08x", id));
-		// For now: enable upload workouts only for Adventurer, Runner3 and Spark3
-		if (id != PRODID_ADVENTURER &&
-				id != PRODID_RUNNER3MUSIC &&
-				id != PRODID_RUNNER3NOMUSIC &&
-				id != PRODID_SPARK3MUSIC)
+		// For now: enable upload workouts only for Adventurer and Runner3
+		if (id != 0xe0070000 && id != 0xd1070000)
 		{
 			jMenuItemUploadWorkouts.setEnabled(false);
 		}

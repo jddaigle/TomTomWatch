@@ -37,7 +37,6 @@ import org.jdesktop.application.ApplicationContext;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
 
-import net.studioblueplanet.generics.GitBuildInfo;
 import net.studioblueplanet.logger.DebugLogger;
 
 /**
@@ -79,8 +78,8 @@ public class TomTomWatch extends SingleFrameApplication
 		loadFonts();
 		view.setFont();
 
-		GitBuildInfo build = GitBuildInfo.getInstance();
-		DebugLogger.info("Build " + build.getGitCommitDescription() + " " + build.getBuildTime());
+		// GitBuildInfo build = GitBuildInfo.getInstance();
+		// DebugLogger.info("Build " + build.getGitCommitDescription() + " " + build.getBuildTime());
 	}
 
 	/**
